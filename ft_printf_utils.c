@@ -6,7 +6,7 @@
 /*   By: bpoetess <bpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 18:42:56 by bpoetess          #+#    #+#             */
-/*   Updated: 2022/01/05 21:24:43 by bpoetess         ###   ########.fr       */
+/*   Updated: 2022/01/05 23:54:34 by bpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,13 @@ int	ft_putunbr_alphab(size_t n, char *alphabet)
 	int	base;
 	int	i;
 
-	i = 0;
 	base = (int) ft_strlen(alphabet);
-	if (n >= (unsigned long) 0 && n <= (unsigned long) base - 1)
+	if (n >= (unsigned long) 0 && n <= (unsigned long)(base - 1))
 		return (ft_printchar(alphabet[n]));
 	else
 	{
-		if (n > 0)
-		{
-			i += ft_putnbr_alphab(n / base, alphabet);
-			return (i + ft_putnbr_alphab(n % base, alphabet));
-		}
-		else
-		{
-			i += ft_printchar('-');
-			i += ft_putnbr_alphab(-(n / base), alphabet);
-			return (i + ft_putnbr_alphab(-(n % base), alphabet));
-		}
+		i = ft_putnbr_alphab(n / base, alphabet);
+		return (i + ft_putnbr_alphab(n % base, alphabet));
 	}
 	return (0);
 }
